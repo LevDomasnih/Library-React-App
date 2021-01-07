@@ -1,7 +1,23 @@
 import React from "react";
+import {connect} from "react-redux";
+import TableEl from "./TableEl";
+import {getBooks} from "../redux/bookReducer";
 
-const TableContainer = () => {
-    return <h1>qqq</h1>
+class TableContainer extends React.Component {
+    componentDidMount() {
+        this.props.getBooks()
+    }
+
+    render() {
+        return <TableEl books={this.props.books} />;
+    }
 }
 
-export default TableContainer;
+let mapStateToProps = (state) => ({
+    books: state.booksStore.books
+})
+
+
+export default connect(mapStateToProps, {
+    getBooks,
+})(TableContainer);

@@ -1,11 +1,11 @@
 import { applyMiddleware } from "redux";
 import thunkMiddleware from "redux-thunk";
-import { createStore, combineReducers } from"redux";
+import { createStore, combineReducers } from "redux";
 import bookReducer from "./bookReducer";
 
 
 let reducers = combineReducers({
-    book: bookReducer,
+    booksStore: bookReducer,
 })
 
 let store = createStore(reducers, applyMiddleware(thunkMiddleware));

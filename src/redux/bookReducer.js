@@ -1,20 +1,20 @@
-import {authAPI} from "../API/api";
+import {booksAPI} from "../API/api";
 
-
-const SET_USER_DATA = 'SET_USER_DATA'
+const GET_BOOKS = 'GET_BOOKS'
 
 let initialState = {
-
+    books: [],
 }
 
 const bookReducer = (state = initialState, action) => {
     switch (action.type) {
-        case SET_USER_DATA:
+        case GET_BOOKS:
+            debugger
             return {
                 ...state,
-                ...action.data,
-                isAuth: true,
+                books: action.data,
             };
+
         default:
             return state;
     }
@@ -22,14 +22,12 @@ const bookReducer = (state = initialState, action) => {
 
 export default bookReducer;
 
-export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } });
+export const setBooksData = (data) => ({ type: GET_BOOKS, data});
 
-export const isAuth = () => (dispatch) => {
-    authAPI.isAuth()
+export const getBooks = () => (dispatch) => {
+    booksAPI.getBooks()
         .then(data => {
-            if (data.resultCode === 0) {
-                let {id, email, login} = data.data;
-                dispatch(setAuthUserData(id, email, login));
-            }
+            console.log(data)
+            dispatch(setBooksData(data));
         })
 }
