@@ -1,7 +1,7 @@
 import React from "react";
 import {connect} from "react-redux";
 import TableEl from "./TableEl";
-import {deleteBook, getBooks} from "../../redux/bookReducer";
+import {deleteBook, editBook, getBooks} from "../../redux/bookReducer";
 
 class TableContainer extends React.Component {
     componentDidMount() {
@@ -9,7 +9,7 @@ class TableContainer extends React.Component {
     }
 
     render() {
-        return <TableEl deleteBook={this.props.deleteBook} books={this.props.books} />;
+        return <TableEl state={this.props} />;
     }
 }
 
@@ -21,4 +21,5 @@ let mapStateToProps = (state) => ({
 export default connect(mapStateToProps, {
     getBooks,
     deleteBook,
+    editBook,
 })(TableContainer);

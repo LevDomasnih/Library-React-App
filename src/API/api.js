@@ -18,8 +18,11 @@ export const booksAPI = {
         })
             .then(response => response.data)
     },
-    editBook() {
-
+    editBook({ genre, author, naming, years, id }) {
+        return instance.post('update.php', {
+            genre, author, naming, years, id
+        })
+            .then(response => response.data)
     },
     deleteBook(id) {
         return instance.post('delete.php', { id })
