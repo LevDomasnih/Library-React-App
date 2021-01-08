@@ -1,12 +1,12 @@
 import React from 'react';
 import './App.css';
-import AddBookContainer from "./components/AddBookContainer";
-import TableContainer from "./components/TableContainer";
+import AddBook from "./components/AddBook/AddBook";
+import TableContainer from "./components/Table/TableContainer";
 
 const App = () => {
   return (
     <div className="App">
-        <AddBookContainer />
+        <AddBook />
         <TableContainer />
     </div>
   );
