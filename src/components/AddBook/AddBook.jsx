@@ -7,8 +7,9 @@ import {Input} from "../common/FormControls/FormsControls";
 
 const maxLength10 = maxLengthCreator(10);
 
-
 const AddBookForm = (props) => {
+
+    const date = new Date().toJSON().slice(0, 10);
 
     return (
         <form onSubmit={props.handleSubmit}>
@@ -22,7 +23,7 @@ const AddBookForm = (props) => {
                 <Field placeholder='Название' name={'naming'} component={Input} validate={[required, maxLength10]}/>
             </div>
             <div>
-                <Field name={'years'} type={'date'} max={new Date().toJSON().slice(0, 10)} component={Input}
+                <Field name={'years'} type={'date'} max={date} component={Input}
                        validate={[required, maxLength10]}/>
             </div>
             <div>
@@ -35,7 +36,6 @@ const AddBookForm = (props) => {
 const AddBookReduxForm = reduxForm({
     form: 'newBook'
 })(AddBookForm)
-
 
 const AddBook = (props) => {
 
@@ -51,8 +51,6 @@ const AddBook = (props) => {
     )
 }
 
-const mapStateToProps = (state) => ({})
-
-export default connect(mapStateToProps, {
+export default connect(null, {
     addBook,
 })(AddBook)

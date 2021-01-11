@@ -21,40 +21,34 @@ const bookReducer = (state = initialState, action) => {
 
 export default bookReducer;
 
-export const setBooksData = (data) => ({type: GET_BOOKS, data});
+export const setBooksData = (data) => ({ type: GET_BOOKS, data });
 
 export const getBooks = () => (dispatch) => {
     booksAPI.getBooks()
-        .then(data => {
-            console.log(data)
+        .then((data) => {
             dispatch(setBooksData(data));
         })
 }
 
 export const addBook = (book) => (dispatch) => {
     booksAPI.addBook(book)
-        .then(data => {
-            console.log(data)
-            if (data.resultCode === true) {
-                dispatch(getBooks());
-                dispatch(reset('newBook'))
-            }
-
+        .then(() => {
+            // debugger
+            dispatch(getBooks());
+            dispatch(reset('newBook'))
         })
 }
 
 export const editBook = (book) => (dispatch) => {
     booksAPI.editBook(book)
-        .then((data) => {
-            console.log(data)
+        .then(() => {
             dispatch(getBooks());
         })
 }
 
 export const deleteBook = (id) => (dispatch) => {
     booksAPI.deleteBook(id)
-        .then(data => {
-            console.log(data)
+        .then(() => {
             dispatch(getBooks());
         })
 }
