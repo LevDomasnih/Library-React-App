@@ -12,9 +12,9 @@ class TableRow extends React.Component {
         this.props.deleteBook(id)
     }
 
-    editElem = (id) => {
+    editElem = () => {
         this.setState({
-            isEdit: true,
+            isEdit: !this.state.isEdit,
         })
     }
 
@@ -40,13 +40,19 @@ class TableRow extends React.Component {
                     </tr>
 
                     <tr>
-                        {this.state.isEdit ? <EditBookReduxForm id={this.props.id} onSubmit={this.editBook}/>
+                        {this.state.isEdit ? <EditBookReduxForm editElem={this.editElem}
+                                                                onSubmit={this.editBook}
+                                                                id={this.props.id}
+                                                                genre={this.props.genre}
+                                                                author={this.props.author}
+                                                                naming={this.props.naming}
+                                                                years={this.props.years}/>
                             : <>
                                 <td>{this.props.genre}</td>
                                 <td>{this.props.author}</td>
                                 <td>{this.props.naming}</td>
                                 <td>{this.props.years}</td>
-                                <button onClick={() => this.editElem(this.props.id)}>Edit</button>
+                                <button onClick={() => this.editElem()}>Edit</button>
                             </>}
                     </tr>
                     </tbody>
@@ -66,21 +72,26 @@ const EditBookForm = (props) => {
         <td colSpan={5}>
             <form onSubmit={props.handleSubmit((vales) => props.onSubmit({...vales, id: props.id}))}>
                 <td>
-                    <Field placeholder='Жанр' id={props.id} name={'genre'} component={Input} validate={[required, maxLength10]}/>
+                    <Field placeholder={props.genre} id={props.id} name={'genre'} component={Input}
+                           validate={[required, maxLength10]}/>
                 </td>
                 <td>
-                    <Field placeholder='Автор' name={'author'} component={Input} validate={[required, maxLength10]} />
+                    <Field placeholder={props.author} name={'author'} component={Input}
+                           validate={[required, maxLength10]}/>
                 </td>
                 <td>
-                    <Field placeholder='Название' name={'naming'} component={Input} validate={[required, maxLength10]} />
+                    <Field placeholder={props.naming} name={'naming'} component={Input}
+                           validate={[required, maxLength10]}/>
                 </td>
                 <td>
-                    <Field name={'years'} type={'date'} max={new Date().toJSON().slice(0,10)} component={Input} validate={[required, maxLength10]} />
+                    <Field name={'years'} type={'date'} max={new Date().toJSON().slice(0, 10)} component={Input}
+                           validate={[required, maxLength10]}/>
                 </td>
                 <td>
-                    <button>Create Edit</button>
+                    <button disabled={props.invalid || props.pristine || props.submitting}>Create Edit</button>
                 </td>
             </form>
+            <button onClick={() => props.editElem()}>Cancel Edit</button>
         </td>
     )
 }

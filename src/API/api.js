@@ -29,10 +29,3 @@ export const booksAPI = {
             .then(response => response.data)
     },
 };
-
-export const ProfileAPI = {
-    updateStatus(status) {
-        return instance.put(`profile/status`, { status: status })
-            .then(response => response.data);
-    },
-};

@@ -10,22 +10,23 @@ const maxLength10 = maxLengthCreator(10);
 
 const AddBookForm = (props) => {
 
-    return(
+    return (
         <form onSubmit={props.handleSubmit}>
             <div>
-                <Field placeholder='Жанр' name={'genre'} component={Input} validate={[required, maxLength10]} />
+                <Field placeholder='Жанр' name={'genre'} component={Input} validate={[required, maxLength10]}/>
             </div>
             <div>
-                <Field placeholder='Автор' name={'author'} component={Input} validate={[required, maxLength10]} />
+                <Field placeholder='Автор' name={'author'} component={Input} validate={[required, maxLength10]}/>
             </div>
             <div>
-                <Field placeholder='Название' name={'naming'} component={Input} validate={[required, maxLength10]} />
+                <Field placeholder='Название' name={'naming'} component={Input} validate={[required, maxLength10]}/>
             </div>
             <div>
-                <Field name={'years'} type={'date'} max={new Date().toJSON().slice(0,10)} component={Input} validate={[required, maxLength10]} />
+                <Field name={'years'} type={'date'} max={new Date().toJSON().slice(0, 10)} component={Input}
+                       validate={[required, maxLength10]}/>
             </div>
             <div>
-                <button>Добавить</button>
+                <button disabled={props.invalid || props.pristine || props.submitting}>Добавить</button>
             </div>
         </form>
     )
@@ -34,7 +35,6 @@ const AddBookForm = (props) => {
 const AddBookReduxForm = reduxForm({
     form: 'newBook'
 })(AddBookForm)
-
 
 
 const AddBook = (props) => {
@@ -51,9 +51,7 @@ const AddBook = (props) => {
     )
 }
 
-const mapStateToProps = (state) => ({
-
-})
+const mapStateToProps = (state) => ({})
 
 export default connect(mapStateToProps, {
     addBook,
