@@ -3,13 +3,13 @@
 > ### Архитектура приложения: `UI <=> BLL <=> DAL <=> SERVER` - **FLUX**.
 
 ## Библиотеки: 
-```
-React
-Redux
-Axios
-Redux-form
-Redux-thunk
-```
+
+- React
+- Redux
+- Axios
+- Redux-form
+- Redux-thunk
+
 
 > Cерверная логика написана на [PHP](https://github.com/LevDomasnih/books-app-PHP) :shipit:
 
